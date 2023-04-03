@@ -16,3 +16,10 @@ Session = sessionmaker(
     autoflush=False,
 )
 
+
+def get_session() -> Session:
+    session = Session()
+    try:
+        yield session
+    finally:
+        session.close()
