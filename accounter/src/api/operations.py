@@ -11,6 +11,7 @@ from src.services.operations import OperationsService
 
 router = APIRouter(
     prefix='/operations',
+    tags=['operations'],
 )
 
 
@@ -20,6 +21,15 @@ def get_operations(
     user: User = Depends(get_current_user),
     service: OperationsService = Depends()
 ):
+    """
+    Getting operations' list.
+    - **kind**: filter by operations' kind.
+    \f
+    :param kind:
+    :param user:
+    :param service:
+    :return:
+    """
     return service.get_list(user_id=user.id, kind=kind)
 
 
@@ -29,6 +39,14 @@ def create_operation(
     user: User = Depends(get_current_user),
     service: OperationsService = Depends(),
 ):
+    """
+    Creating new operation.
+    \f
+    :param operation_data:
+    :param user:
+    :param service:
+    :return:
+    """
     return service.create(user_id=user.id, operation_data=operation_data)
 
 
@@ -38,6 +56,14 @@ def get_operation(
     user: User = Depends(get_current_user),
     service: OperationsService = Depends(),
 ):
+    """
+    Getting an operation on its id.
+    \f
+    :param operation_id:
+    :param user:
+    :param service:
+    :return:
+    """
     return service.get(user_id=user.id, operation_id=operation_id)
 
 
@@ -48,6 +74,15 @@ def update_operation(
     user: User = Depends(get_current_user),
     service: OperationsService = Depends(),
 ):
+    """
+    Changing operation data.
+    \f
+    :param operation_id:
+    :param operation_data:
+    :param user:
+    :param service:
+    :return:
+    """
     return service.update(user_id=user.id, operation_id=operation_id, operation_data=operation_data)
 
 
@@ -57,5 +92,13 @@ def delete_operation(
     user: User = Depends(get_current_user),
     service: OperationsService = Depends(),
 ):
+    """
+    Removing an operation.
+    \f
+    :param operation_id:
+    :param user:
+    :param service:
+    :return:
+    """
     service.delete(user_id=user.id, operation_id=operation_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
