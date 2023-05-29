@@ -2,10 +2,10 @@ from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException, status
 from typing import List, Optional, Type
 
-from .. import tables
-from src.database import get_session
+from ..db import tables
+from src.db.database import get_session
 from src.models.operations import OperationKind, OperationCreate, OperationUpdate
-from ..tables import Operation
+from src.db.tables import Operation
 
 
 class OperationsService:

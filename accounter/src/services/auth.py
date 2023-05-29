@@ -7,10 +7,10 @@ from passlib.hash import bcrypt
 from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
-from src import tables
-from src.database import get_session
+from src.db import tables
+from src.db.database import get_session
 from src.models.auth import User, Token, UserCreate
-from src.settings import settings
+from src.core.settings import settings
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/auth/sing-in')
